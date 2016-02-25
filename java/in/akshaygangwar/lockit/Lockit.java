@@ -17,10 +17,8 @@ public class Lockit extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lockit);
         checkDeviceAdminRights(getApplicationContext());
-        //turnOffScreenAndExit();
+        super.onCreate(savedInstanceState);
     }
 
     private void checkDeviceAdminRights(Context context) {
@@ -29,8 +27,6 @@ public class Lockit extends AppCompatActivity {
                 LockitAdminReceiver.class);
         boolean admin = pm.isAdminActive(adminReceiver);
         if(!admin) {
-            TextView textView = (TextView) findViewById(R.id.statusTextView);
-            textView.setText("Lockit needs administrator rights to be able to Lock your screen.");
             getAdminRights();
         } else {
             turnOffScreenAndExit();
@@ -67,7 +63,6 @@ public class Lockit extends AppCompatActivity {
         if (admin) {
             policyManager.lockNow();
         } else {
-            Toast.makeText(context, "Not admin", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -82,32 +77,9 @@ public class Lockit extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                TextView textView = (TextView)findViewById(R.id.statusTextView);
-                textView.setText("This screen can be dismissed, and will not show up on subsequent usages of this app.\nThanks for using Lockit.");
                 turnScreenOff(getApplicationContext());
             }
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_lockit, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
