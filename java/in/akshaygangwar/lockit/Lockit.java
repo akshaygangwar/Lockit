@@ -1,3 +1,25 @@
+/*
+*
+* Lockit
+  Copyright (C) 2016  Akshay Gangwar
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+  http://www.akshaygangwar.in
+*
+**/
+
 package in.akshaygangwar.lockit;
 
 import android.app.Activity;
@@ -5,15 +27,12 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class Lockit extends AppCompatActivity {
+
+    public void main () {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +55,8 @@ public class Lockit extends AppCompatActivity {
     private void turnOffScreenAndExit () {
         //first lock screen
         turnScreenOff(getApplicationContext());
-
-        //then provide feedback
-        ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
-
         //schedule end of activity
-        final Activity activity = this;
-        Thread t = new Thread() {
-            public void run() {
-                try {
-                    sleep(500);
-                } catch (InterruptedException e) {
-                    //Ignore
-                }
-                activity.finish();
-            }
-        };
-        t.start();
+        this.finish();
     }
 
     static void turnScreenOff (final Context context) {
