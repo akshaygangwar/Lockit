@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lockit</string>
+    <string name="title_activity_lockit">Lockit</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="admin_receiver_status_enabled">This is the permission you\'ve been looking for.</string>
+    <string name="admin_receiver_status_disabled">Uh, no admin.</string>
+    <string name="device_admin_description">Allow Lockit to get administrator rights to allow it to lock screen.</string>
+</resources>
